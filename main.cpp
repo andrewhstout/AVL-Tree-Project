@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 #include "AVLTree.h"
 #include "BST.h"
 
@@ -49,7 +50,49 @@ int main() {
     BST bst;
     AVLTree avl;
 
-    // Insert numbers from 1 to 15
+    // insert timing
+    auto t1 = chrono::high_resolution_clock::now();
+    for (int i = 1; i <= 15; ++i) {
+        bst.insert(i);
+    }
+    auto t2 = chrono::high_resolution_clock::now();
+
+    auto t3 = chrono::high_resolution_clock::now();
+    for (int i = 1; i <= 15; ++i) {
+        avl.insert(i);
+    }
+    auto t4 = chrono::high_resolution_clock::now();
+
+    cout << "BST insert time: "
+         << chrono::duration<double, micro>(t2 - t1).count()
+         << " microseconds\n";
+
+    cout << "AVL insert time: "
+         << chrono::duration<double, micro>(t4 - t3).count()
+         << " microseconds\n\n";
+
+    // delete timing (remove numbers 1–15)
+    auto t5 = chrono::high_resolution_clock::now();
+    for (int i = 1; i <= 15; ++i) {
+        bst.remove(i);
+    }
+    auto t6 = chrono::high_resolution_clock::now();
+
+    auto t7 = chrono::high_resolution_clock::now();
+    for (int i = 1; i <= 15; ++i) {
+        avl.remove(i);
+    }
+    auto t8 = chrono::high_resolution_clock::now();
+
+    cout << "BST delete time: "
+         << chrono::duration<double, micro>(t6 - t5).count()
+         << " microseconds\n";
+
+    cout << "AVL delete time: "
+         << chrono::duration<double, micro>(t8 - t7).count()
+         << " microseconds\n\n";
+
+    // reinsert for printing
     for (int i = 1; i <= 15; ++i) {
         bst.insert(i);
         avl.insert(i);
