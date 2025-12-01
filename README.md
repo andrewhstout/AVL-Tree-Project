@@ -22,8 +22,4 @@ main.cpp (which exaggerates the difference between AVL Trees and standard BSTs)
 
 Compile and Run:
 g++ main.cpp AVLTree.cpp BST.cpp -o tree_demo
-<<<<<<< HEAD
 ./tree_demo
-=======
-./tree_demo
->>>>>>> 580e995 (Initial commit: AVL Tree Project)
